@@ -1,0 +1,12 @@
+name: Linux x86-64
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install assembler
+        run: sudo apt-get update && sudo apt-get install -y nasm
+      - run: make test
